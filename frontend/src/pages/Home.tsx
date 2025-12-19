@@ -1,17 +1,42 @@
 // src/pages/Home.tsx
 import { useNavigate } from "react-router-dom";
 import FlameIcon from "../assets/Subtract.svg?react";
+import { useEffect, useState } from "react";
+
+// encouragement lines to pick from
+const ENCOURAGEMENT_LINES = [
+    "Future you is watching — and proud.",
+    "One more rep of effort. Not weight.",
+    "Keep the streak alive. Even if it’s light.",
+    "You don’t need a big day everyday.",
+    "Stay honest with the work.",
+    "Nothing fancy. Just show up.",
+    "You’re building something, slowly.",
+    "Nobody to prove to, but yourself.",
+    "This is how it's done.",
+    "Keep it clean.",
+    "Do the work. Log it. Move on."
+];
+
+function pickRandomLine(lines: string[]) {
+    return lines[Math.floor(Math.random() * lines.length)];
+}
 
 export default function Home() {
     const nav = useNavigate();
+    const [line, setLine] = useState("");
+
+    useEffect(() => {
+        setLine(pickRandomLine(ENCOURAGEMENT_LINES));
+    }, []);
 
     return (
         <div className="px-5 pt-6">
             <TopPill title="Home" />
 
             <div className="mt-5 flex items-center justify-between gap-3">
-                <p className="flex-1 text-center text-[12px] text-[#6B7280]">
-                    One line of advice/encouragement blahblah
+                <p className="flex-1 pl-10 text-left text-[12px] text-[#6B7280] leading-snug">
+                    {line}
                 </p>
 
                 <div className="flex h-10 items-center gap-2 rounded-[14px] bg-[#DFE8FF] px-4">
@@ -114,7 +139,7 @@ function HighlightRow({ icon, text }: { icon: React.ReactNode; text: string }) {
 }
 
 /* Icons */
-
+// Remember to replace UserIcon with an actual avatar image later
 function UserIcon(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg viewBox="0 0 24 24" fill="none" {...props}>
