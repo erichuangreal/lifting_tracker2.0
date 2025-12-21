@@ -25,7 +25,31 @@ type DraftState = {
     savedAt: string; // saves the date, refreshes every day
 };
 
+function todayKey() {
+    return new Date().toISOString().slice(0, 10);
+}
 
+// load the same draft from localStorage if it's from today
+function loadDraft(): DraftState | null {
+    try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return null;
+        const parsed = JSON.parse(raw) as DraftState;
+
+        if (parsed.savedAt !== todayKey()) return null;
+        return parsed;
+    } catch {
+        return null;
+    }
+}
+
+function saveDraft(d: DraftState) {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+    } catch {
+        // ignore
+    }
+}
 
 export default function LogWout() {
     // current exercise + sets
