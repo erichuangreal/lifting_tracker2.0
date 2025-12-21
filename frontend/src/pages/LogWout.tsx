@@ -47,17 +47,15 @@ function saveDraft(d: DraftState) {
     try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
     } catch {
-        // ignore
     }
 }
 
 export default function LogWout() {
-    // current exercise + sets
-    const [currentExercise, setCurrentExercise] = useState<string>("");
-    const [sets, setSets] = useState<SetRow[]>([{ weight: "", reps: "" }]);
+    const draft = loadDraft();
 
-    // exercise log (completed list)
-    const [log, setLog] = useState<LoggedExercise[]>([]);
+    const [currentExercise, setCurrentExercise] = useState<string>(draft?.currentExercise ?? "");
+    const [sets, setSets] = useState<SetRow[]>(draft?.sets ?? [{ weight: "", reps: "" }]);
+    const [log, setLog] = useState<LoggedExercise[]>(draft?.log ?? []);
 
     const currentVolume = useMemo(() => {
         let v = 0;
