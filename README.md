@@ -1,5 +1,24 @@
 # lifting_tracker2.0
 
+A minimalist, avatar-centric workout tracking app designed to not only allow users to log their exercises (like every other "workout tracker"), but to support the user in their training regardless of experience. Our avatar, which does not have a name currently, acts as a symbol of the user's progress. Much of the algorithm is hidden behind the UI, leaving only the highlights, coaching tips, and avatar emotions for the user to see.
+
+1. Highlights are chosen for the day and week to make the user proud of his or her achievements.
+2. Coaching tips are unique for each and every set the user does, and I will be looking into expanding into ML-supported advice.
+3. The avatar's emotions change based on the volume and intensity of the user's baseline training for the past 14 days.
+
+## Core Features
+- React + TypeScript frontend (Vite) with Tailwind UI
+- Multi-page layout: Home, Log Workout, Calendar, Stats, Profile
+- Exercise library with dynamic set logging (weight + reps)
+- Draft workout state with daily reset and local-first persistence
+- Node.js backend with Prisma ORM and REST API (GET / POST workouts)
+
+## Behavioral & Algorithmic Highlights
+- Avatar-driven UX that reacts to user consistency and workout completion
+- Lightweight state algorithms to track streaks, missed days, and effort signals
+- Contextual encouragement and tips generated from recent workout patterns
+- Designed to reinforce habit-building without aggressive gamification
+
 ## Coach Line Logic (Algorithm)
 
 The coach line is **calculated**, not randomized.  
