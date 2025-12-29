@@ -1,38 +1,29 @@
 export type Units = "kg" | "lb";
 export type Experience = "beginner" | "intermediate" | "advanced";
 export type Goal = "strength" | "hypertrophy" | "general" | "cut" | "bulk";
-export type CoachingStyle = "gentle" | "direct" | "coach";
 
 export type Profile = {
-    displayName: string;
-    pronouns: string;
-
-    units: Units;
-    experience: Experience;
+    name: string; // person's name
     goal: Goal;
 
-    targetDaysPerWeek: number;
+    units: Units;
+    targetDaysPerWeek: number; // 1..7
+    experience: Experience; // beginner/intermediate/advanced
 
-    encouragementLevel: number;
-    coachingStyle: CoachingStyle;
-    showAvatar: boolean;
+    syncEnabled: boolean; // false = local-only, true = sync
 
-    updatedAt: string;
+    updatedAt: string; // ISO
 };
 
 export const DEFAULT_PROFILE: Profile = {
-    displayName: "",
-    pronouns: "",
-
-    units: "lb",
-    experience: "beginner",
+    name: "",
     goal: "general",
 
+    units: "lb",
     targetDaysPerWeek: 3,
+    experience: "beginner",
 
-    encouragementLevel: 60,
-    coachingStyle: "gentle",
-    showAvatar: true,
+    syncEnabled: false,
 
     updatedAt: new Date().toISOString(),
 };

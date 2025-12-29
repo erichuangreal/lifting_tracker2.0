@@ -18,9 +18,8 @@ export function useProfile() {
         return stored ?? DEFAULT_PROFILE;
     });
 
-    // Persist on change
     useEffect(() => {
-        const next = { ...profile, updatedAt: new Date().toISOString() };
+        const next: Profile = { ...profile, updatedAt: new Date().toISOString() };
         localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [JSON.stringify(profile)]);
